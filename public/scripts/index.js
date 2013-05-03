@@ -1,8 +1,8 @@
 (function(global) {
 'use strict';
 
-function testAPI() {
-  CSS.hide(document.querySelector('.jumbotron'));
+function runApp() {
+  CSS.hide('.jumbotron');
   var facepile = document.getElementById('facepile');
   FB.api(
     '/me/friends',
@@ -34,25 +34,45 @@ function testAPI() {
 // ---
 
 var CSS = (function() {
+
   var hiddenClass = 'hidden_elem';
+
+  function type(arg) {
+    return Object.prototype.toString.call(arg).slice(8, -1);
+  }
+
+  function getNode(nodeOrStr) {
+    if (type(nodeOrStr) !== 'String') {
+      return nodeOrStr;
+    }
+    return document.querySelector(nodeOrStr);
+  }
+
   return {
-    shown: function(node) {
-      return !node.classList.contains(hiddenClass);
+
+    shown: function(nodeOrStr) {
+      return !getNode(nodeOrStr).classList.contains(hiddenClass);
     },
-    hide: function(node) {
-      node.classList.add(hiddenClass);
+
+    hide: function(nodeOrStr) {
+      getNode(nodeOrStr).classList.add(hiddenClass);
     },
-    show: function(node) {
-      node.classList.remove(hiddenClass);
+
+    show: function(nodeOrStr) {
+      getNode(nodeOrStr).classList.remove(hiddenClass);
     },
-    toggle: function(node) {
+
+    toggle: function(nodeOrStr) {
+      var node = getNode(nodeOrStr);
       if (CSS.shown(node)) {
         CSS.hide(node);
       } else {
         CSS.show(node);
       }
     }
+
   };
+
 }());
 
 // Facebook API specific
@@ -60,7 +80,7 @@ var CSS = (function() {
 
 function authChangeHandler(response) {
   if (response.status === 'connected') {
-    testAPI();
+    runApp();
   } else if (response.status === 'not_authorized') {
     console.log('Y you no login?');
   } else {
@@ -84,7 +104,7 @@ window.fbAsyncInit = function() {
   loginButton.addEventListener('click', function(ev) {
     FB.login(function(response) {
       if (response.status === 'connected') {
-        testAPI();
+        runApp();
       } else {
         authChangeHandler(response);
       }
