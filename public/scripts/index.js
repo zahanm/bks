@@ -1,10 +1,21 @@
 (function(global) {
+'use strict';
 
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
-  FB.api('/me', function(response) {
-    console.log('Good to see you, ' + response.name + '.');
-  });
+  var s = '/snippets/chathead.html';
+  FB.api(
+    '/me/friends',
+    {
+      limit: 10,
+      fields: [ 'name' ]
+    },
+    function(response) {
+      var sample = document.getElementById('samplePerson');
+      console.log(Mustache.render);
+      console.log(response);
+    }
+  );
 }
 
 // Facebook API specific
