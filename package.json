@@ -1,0 +1,21 @@
+{
+  "name": "dandy",
+  "version": "0.0.1",
+  "description": "A dandy base to build interactions on top of",
+  "main": "lib/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zahanm/dandy.git"
+  },
+  "author": "Zahan Malkani <z@zahanm.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "52f6c0d1d50c0273c6b0ed1678e988ed3701d86c",
+  "dependencies": {
+    "express": "~3.2.1",
+    "optimist": "~0.4.0"
+  }
+}
