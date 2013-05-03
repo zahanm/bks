@@ -1,6 +1,18 @@
 bks
 ===
 
+Next steps
+---
+
+1. Get the Facebook API working
+1. Let's use `mongodb` as a backend to store stuff on the server. We don't have anything for now, but that'll change as people add their close friends.
+1. Most of this can live on the client.
+
+Open questions
+---
+
+- NUX experience?
+
 Running
 ---
 

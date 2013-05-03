@@ -5,23 +5,28 @@
   <link rel="stylesheet/less" type="text/css" href="/styles/index.less" />
 </head>
 <body>
+  <div id="fb-root"></div>
   <div class="container">
     
     <!-- top hero unit -->
     <div class="jumbotron">
       <h1>Super awesome marketing speak!</h1>
-      <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <a class="btn btn-large btn-success" href="#">Sign up today</a>
+      <p class="lead">You can login to our app below.</p>
+      <button class="btn btn-large btn-success fb-login">
+        Log in with Facebook
+      </button>
     </div>
+
   </div>
 
   <!-- scripts -->
   <script type="text/javascript">
-    less = {
+    window.less = {
       env: "development", // or "production"
       async: true,       // load imports async
     };
   </script>
   <script src="/scripts/less.min.js" type="text/javascript"></script>
+  <script src="/scripts/index.js" type="text/javascript"></script>
 </body>
 </html>
