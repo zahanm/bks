@@ -2,7 +2,8 @@
 'use strict';
 
 function testAPI() {
-  console.log('Welcome! Fetching your information.... ');
+  CSS.hide(document.querySelector('.jumbotron'));
+  var facepile = document.getElementById('facepile');
   FB.api(
     '/me/friends',
     {
@@ -18,7 +19,10 @@ function testAPI() {
           '/snippets/chathead.html',
           friend,
           function(rendered) {
-            console.log(rendered);
+            var face = document.createElement('div');
+            face.innerHTML = rendered;
+            face.classList.add('face');
+            facepile.appendChild(face);
           }
         );
       }
@@ -26,12 +30,37 @@ function testAPI() {
   );
 }
 
+// CSS Helper
+// ---
+
+var CSS = (function() {
+  var hiddenClass = 'hidden_elem';
+  return {
+    shown: function(node) {
+      return !node.classList.contains(hiddenClass);
+    },
+    hide: function(node) {
+      node.classList.add(hiddenClass);
+    },
+    show: function(node) {
+      node.classList.remove(hiddenClass);
+    },
+    toggle: function(node) {
+      if (CSS.shown(node)) {
+        CSS.hide(node);
+      } else {
+        CSS.show(node);
+      }
+    }
+  };
+}());
+
 // Facebook API specific
 // ---
 
 function authChangeHandler(response) {
   if (response.status === 'connected') {
-    return;
+    testAPI();
   } else if (response.status === 'not_authorized') {
     console.log('Y you no login?');
   } else {
