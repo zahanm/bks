@@ -2,18 +2,26 @@
 'use strict';
 
 function testAPI() {
-  console.log('Welcome!  Fetching your information.... ');
-  var s = '/snippets/chathead.html';
+  console.log('Welcome! Fetching your information.... ');
   FB.api(
     '/me/friends',
     {
-      limit: 10,
+      limit: 3,
       fields: [ 'name' ]
     },
     function(response) {
-      var sample = document.getElementById('samplePerson');
-      console.log(Mustache.render);
-      console.log(response);
+      var friends = response.data;
+      var ii = 0;
+      for (ii = 0; ii < friends.length; ii++) {
+        var friend = friends[ii];
+        Templater.render(
+          '/snippets/chathead.html',
+          friend,
+          function(rendered) {
+            console.log(rendered);
+          }
+        );
+      }
     }
   );
 }
