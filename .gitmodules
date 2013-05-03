@@ -1,0 +1,3 @@
+[submodule "public/scripts/templater"]
+	path = public/scripts/templater
+	url = git@github.com:zahanm/templater.git
